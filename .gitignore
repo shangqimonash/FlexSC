@@ -16,3 +16,10 @@ hs_err_pid*
 .project
 NPOTKey
 source.txt
+
+# Maven #
+target/
+
+# IDEA #
+.idea/
+*.iml
