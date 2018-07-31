@@ -22,9 +22,9 @@ public class OTExtSender extends OTSender {
 
 	private static SecureRandom rnd;
 	static {
-		Security.addProvider(new ISAACProvider());
+		//Security.addProvider(new ISAACProvider());
 		try {
-			rnd = SecureRandom.getInstance("ISAACRandom");
+			rnd = SecureRandom.getInstance("SHA1PRNG");
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
