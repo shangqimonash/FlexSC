@@ -100,7 +100,9 @@ public class OTExtSender extends OTSender {
 		Flag.sw.startOTIO();
 		for (int i = 0; i < SecurityParameter.k1; i++) {
 			cphPairs[i][0] = channel.readBI();
+			channel.flush();
 			cphPairs[i][1] = channel.readBI();
+			channel.flush();
 		}
 		Flag.sw.stopOTIO();
 
@@ -130,7 +132,9 @@ public class OTExtSender extends OTSender {
 					GCSignal.newInstance(tQ.data[i].xor(biS).toByteArray()),
 					msgPairs[i][1], i);
 			y[i][0].send(channel);
+			channel.flush();
 			y[i][1].send(channel);
+			channel.flush();
 		}
 
 		Flag.sw.startOTIO();
@@ -152,6 +156,7 @@ public class OTExtSender extends OTSender {
 			s[i] = rnd.nextBoolean();
 
 		keys = rcver.receive(s);
+		channel.flush();
 	}
 
 	public static BigInteger fromBoolArray(boolean[] a) {

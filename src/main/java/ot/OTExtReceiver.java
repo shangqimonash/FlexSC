@@ -93,7 +93,9 @@ public class OTExtReceiver extends OTReceiver {
 			cphPairs[i][1] = cipher.encrypt(keyPairs[i][1].bytes,
 					msgPairs[i][1], choices.length);
 			channel.writeBI(cphPairs[i][0]);
+			channel.flush();
 			channel.writeBI(cphPairs[i][1]);
+			channel.flush();
 		}
 
 		Flag.sw.startOTIO();
@@ -107,7 +109,9 @@ public class OTExtReceiver extends OTReceiver {
 
 		for (int i = 0; i < choices.length; i++) {
 			y[i][0] = GCSignal.receive(channel);
+			channel.flush();
 			y[i][1] = GCSignal.receive(channel);
+			channel.flush();
 			int sigma = choices[i] ? 1 : 0;
 			res[i] = cipher.dec(GCSignal.newInstance(tT.data[i].toByteArray()),
 					y[i][sigma], i);
