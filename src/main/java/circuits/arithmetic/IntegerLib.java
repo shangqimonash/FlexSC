@@ -462,6 +462,11 @@ public class IntegerLib<T> extends CircuitLib<T> implements ArithmeticLib<T> {
 		return add(add(z0Pad, z1), z2Pad);
 	}
 
+	public T[] max(T[] x, T[] y) {
+		T geq = geq(x, y);
+		return mux(y, x, geq);
+	}
+
 	public T[] min(T[] x, T[] y) {
 		T leq = leq(x, y);
 		return mux(y, x, leq);
