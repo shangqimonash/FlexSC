@@ -154,6 +154,7 @@ public abstract class GCGenComp extends GCCompEnv {
 	public boolean outputToBob(GCSignal out) {
 		if (!out.isPublic())
 			out.send(channel);
+		flush();
 		return false;
 	}
 

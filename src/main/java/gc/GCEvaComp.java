@@ -82,6 +82,7 @@ public abstract class GCEvaComp extends GCCompEnv{
 	public boolean outputToAlice(GCSignal out) {
 		if (!out.isPublic())
 			out.send(channel);
+		flush();
 		return false;
 	}
 
