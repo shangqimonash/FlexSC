@@ -10,6 +10,7 @@ public class Server extends Network {
 	public void listen(int port) {
 		try {
 			serverSock = new ServerSocket(port);
+			serverSock.setReuseAddress(true);
 			sock = serverSock.accept(); // wait for client to connect
 
 			os = new BufferedOutputStream(sock.getOutputStream());
