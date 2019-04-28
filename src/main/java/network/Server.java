@@ -8,16 +8,22 @@ import java.net.ServerSocket;
 public class Server extends Network {
 
 	public void listen(int port) {
-		try {
-			serverSock = new ServerSocket(port);
-			serverSock.setReuseAddress(true);
-			sock = serverSock.accept(); // wait for client to connect
+		boolean success = false;
 
-			os = new BufferedOutputStream(sock.getOutputStream());
-			is = new BufferedInputStream(sock.getInputStream());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} // create socket and bind to port
+		while (!success) {
+			try {
+				serverSock = new ServerSocket(port);
+				serverSock.setReuseAddress(true);
+				sock = serverSock.accept(); // wait for client to connect
+				success = true;
+
+				os = new BufferedOutputStream(sock.getOutputStream());
+				is = new BufferedInputStream(sock.getInputStream());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} // create socket and bind to port
+		}
+
 	}
 }
